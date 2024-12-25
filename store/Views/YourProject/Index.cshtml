@@ -1,0 +1,107 @@
+﻿@{
+    ViewData["Title"] = "Your Project";
+}
+
+<div class="container mt-5">
+    <!-- Hero Section -->
+    <section class="text-center mb-5">
+        <h1>Your Project</h1>
+        <p class="lead">We specialize in making your dream projects a reality. Select the type of project you're interested in below.</p>
+    </section>
+
+    <!-- Project Selection Section -->
+    <section class="row text-center">
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <img class="card-img-top" src="~/images/renovation.jpeg" alt="Renovation Image">
+                <div class="card-body">
+                    <h3 class="card-title">Renovation</h3>
+                    <p class="card-text">Transform your existing space with our top-quality renovation services.</p>
+                    <a class="btn btn-primary" href="javascript:void(0);" onclick="showDetails('renovation')">Learn More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <img class="card-img-top" src="~/images/construction.jpg" alt="Construction Image">
+                <div class="card-body">
+                    <h3 class="card-title">Construction</h3>
+                    <p class="card-text">Get the best construction services tailored to your unique needs.</p>
+                    <a class="btn btn-primary" href="javascript:void(0);" onclick="showDetails('construction')">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Details Section -->
+    <section id="details" class="mt-5" style="display: none;">
+        <!-- Content will be dynamically inserted here -->
+    </section>
+
+    <!-- Request a Quote Button -->
+    <section class="text-center mt-5">
+        <button class="btn btn-lg btn-primary" onclick="showQuoteForm()">Request a Quote</button>
+    </section>
+
+    <!-- Quote Request Modal -->
+    <div class="modal fade" id="quoteModal" tabindex="-1" aria-labelledby="quoteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="quoteModalLabel">Request a Quote</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form asp-controller="YourProject" asp-action="SubmitQuote" method="post">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="phone" name="phone" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="details" class="form-label">Project Details</label>
+                            <textarea class="form-control" id="details" name="details" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function showDetails(type) {
+            const detailsSection = document.getElementById('details');
+            const url = `/YourProject/${type}`;
+
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    detailsSection.innerHTML = html;
+                    detailsSection.style.display = 'block';
+                    window.scrollTo({
+                        top: detailsSection.offsetTop,
+                        behavior: 'smooth'
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching details:', error);
+                });
+        }
+
+        function showQuoteForm() {
+            const quoteModal = new bootstrap.Modal(document.getElementById('quoteModal'));
+            quoteModal.show();
+        }
+    </script>
+}

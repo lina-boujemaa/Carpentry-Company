@@ -1,0 +1,61 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+    .project-gallery {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .project-item {
+        margin-bottom: 20px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+footer {
+    background-color: black;
+    color: white;
+    text-align: center; /* Centers the text */
+    padding: 20px 0; /* Adds padding to the top and bottom */
+}
+
+    footer .container {
+        display: flex;
+        justify-content: center; /* Centers the container's content horizontally */
+    }
+
+    footer .row {
+        width: 100%; /* Makes sure the row takes full width */
+        max-width: 960px; /* Adjust as needed */
+        margin: 0 auto; /* Centers the row */
+        display: flex;
+        justify-content: space-between; /* Distributes space between the columns */
+    }
+
+    footer p, footer a {
+        color: white; /* Ensures text color is white */
+    }
+
+    footer a {
+        text-decoration: none; /* Removes underline from links */
+    }
+
+    footer .text-md-end {
+        text-align: center; /* Centers text in the right column */
+    }

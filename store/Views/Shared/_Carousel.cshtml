@@ -1,0 +1,34 @@
+﻿<!-- Views/Shared/_Carousel.cshtml -->
+<div id="carouselExampleCaptions" class="carousel slide mt-4" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/images/menuisier.png"class="d-block w-100" alt="Showcasing our company">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Welcome to Our Company</h5>
+                <p>Discover our projects and services.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/menuisier.jpg" class="d-block w-100" alt="Range of our products">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Our Products</h5>
+                <a href="@Url.Action("Index", "Products")" class="btn btn-primary">View Products</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/menuisier2.jpg" class="d-block w-100" alt="Our services overview">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Our Services</h5>
+                <p>Learn more about the services we offer.</p>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+</div>

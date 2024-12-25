@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - store</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/store.styles.css" asp-append-version="true" />
+    <style>
+        .section-content {
+            padding: 20px;
+        }
+
+        #quote-form, #contact-us {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    @await Html.PartialAsync("_Header")
+
+    <main role="main" class="container mt-4">
+        @RenderBody()
+    </main>
+
+    @await Html.PartialAsync("_Footer")
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        function showDetails(type) {
+            const detailsSection = document.getElementById('details');
+            if (type === 'renovation') {
+                detailsSection.innerHTML = `
+                                    <h3>Renovation of Joinery</h3>
+                                    <p>We are more than just carpenters; we are a network of craftsmen dedicated to their passion...</p>
+                                    <h4>Exterior Joinery</h4>
+                                    <p>Description of exterior joinery services...</p>
+                                    <h4>Interior Joinery</h4>
+                                    <p>Description of interior joinery services...</p>
+                                `;
+            } else if (type === 'construction') {
+                detailsSection.innerHTML = `
+                                    <h3>Construction Services</h3>
+                                    <p>Description of construction services...</p>
+                                `;
+            }
+            detailsSection.style.display = 'block';
+        }
+
+        function showQuoteForm() {
+            document.getElementById('quote-form').style.display = 'block';
+        }
+
+        function showContactUs() {
+            document.getElementById('contact-us').style.display = 'block';
+        }
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

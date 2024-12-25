@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Construction Services";
+}
+
+<main role="main" class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+    <p>At SofiBois, we offer a comprehensive range of construction and carpentry services. Our skilled team is dedicated to providing top-quality work for residential and commercial projects. Below is an overview of the services we provide.</p>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section">
+        <h3>Overview of Carpentry Services</h3>
+        <p>Our carpentry services cater to a wide range of needs, from custom furniture to structural carpentry. We ensure durability, aesthetics, and functionality with every project.</p>
+    </section>
+
+    <!-- Types of Carpentry Work -->
+    <section id="types" class="section">
+        <h3>Types of Carpentry Work</h3>
+        <ul>
+            <li><strong>Custom Woodworking:</strong> Tailored furniture, cabinetry, and decor pieces.</li>
+            <li><strong>Structural Carpentry:</strong> Building and reinforcing beams, joists, and framing.</li>
+            <li><strong>Interior Carpentry:</strong> Installation of trim, moldings, and custom shelving.</li>
+            <li><strong>Exterior Carpentry:</strong> Decks, fences, and siding to enhance your property.</li>
+            <li><strong>Restoration and Repair:</strong> Refurbishing existing wooden structures.</li>
+        </ul>
+    </section>
+
+    <!-- Project Gallery -->
+    <section id="projects" class="section">
+        <h3>Examples of Our Projects</h3>
+        <div class="project-gallery row">
+            <div class="col-md-6 mb-4">
+                <div class="project-item shadow-sm">
+                    <img src="~/images/custom-furniture.jpeg" alt="Custom Furniture" class="img-fluid">
+                    <p class="text-center"><strong>Custom Furniture:</strong> Beautifully crafted pieces tailored to fit your space and style.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="project-item shadow-sm">
+                    <img src="~/images/interior-woodwork.jpg" alt="Interior Woodwork" class="img-fluid">
+                    <p class="text-center"><strong>Interior Woodwork:</strong> Elegant trim and moldings that enhance the interior of your home.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="project-item shadow-sm">
+                    <img src="~/images/exterior-deck.jpg" alt="Exterior Deck" class="img-fluid">
+                    <p class="text-center"><strong>Exterior Deck:</strong> A stunning deck designed for outdoor relaxation and entertainment.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="project-item shadow-sm">
+                    <img src="~/images/structural-repair.jpeg" alt="Structural Repair" class="img-fluid">
+                    <p class="text-center"><strong>Structural Repair:</strong> Expert repair and reinforcement of structural elements for added safety and stability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Request a Quote Section -->
+    <section id="quote" class="text-center mt-5">
+        <h3>Request a Quote</h3>
+        <p>If you’re interested in our carpentry services, please <a href="#quote-form" class="btn btn-primary" onclick="showQuoteForm()">request a quote</a> or contact us for more information.</p>
+    </section>
+</main>
+
+@section Styles {
+    <style>
+        /* Ensure consistent image size and spacing in the gallery */
+        .project-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .project-item {
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+            text-align: center;
+        }
+
+        /* Ensure images are consistently sized and maintain their aspect ratio */
+        .project-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover; /* Makes sure the image fills the container while keeping the aspect ratio */
+            border-bottom: 4px solid #007bff; /* Adds a colored border under each image */
+        }
+
+        .project-item p {
+            padding: 10px;
+            background-color: #fff; /* Background for better readability */
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        
+    </style>
+}
+
+}

@@ -1,0 +1,84 @@
+﻿@model List<store.Models.Product>
+@using Microsoft.AspNetCore.Identity
+@using store.Areas.Identity.Data
+@inject SignInManager<storeUser> SignInManager
+@inject UserManager<storeUser> UserManager
+
+<h2 class="text-center">List of Products</h2>
+
+<!-- Search Form -->
+<form method="get" asp-action="Index">
+    <div class="form-group">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Search by Name, Brand, Description, or Category" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<!-- Button to create a new product (Only for Admins) -->
+@if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Admin"))
+{
+    <div class="text-center">
+        <a asp-action="Create" class="btn btn-primary">Create New Product</a>
+    </div>
+}
+
+<!-- Displaying the list of products -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Created At</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Brand</td>
+                <td>@product.Description</td>
+                <td>@product.Category</td>
+                <td>@(product.Price) TND</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(product.ImageFileName))
+                    {
+                        <img src="~/products/@product.ImageFileName" alt="@product.Name" width="100" />
+                    }
+                    else
+                    {
+                        <p>No Image</p>
+                    }
+                </td>
+                <td>@product.CreatedAt.ToShortDateString()</td>
+                <td>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        var currentUser = await UserManager.GetUserAsync(User);
+
+                        // If user is an admin, show Edit and Delete buttons
+                        if (await UserManager.IsInRoleAsync(currentUser, "Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning btn-sm">Edit</a>
+                            <form method="post" asp-action="Delete" asp-route-id="@product.Id" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        }
+                        // If user is a client, show Add to Cart button
+                        else if (await UserManager.IsInRoleAsync(currentUser, "Client"))
+                        {
+                            <form method="post" asp-action="AddToCart" asp-controller="Cart" asp-route-productId="@product.Id">
+                                <button type="submit" class="btn btn-primary btn-sm">Add to Cart</button>
+                            </form>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

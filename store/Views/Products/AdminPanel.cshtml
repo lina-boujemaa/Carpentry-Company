@@ -1,0 +1,46 @@
+﻿@model List<store.Areas.Identity.Data.storeUser>
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<store.Areas.Identity.Data.storeUser> UserManager
+
+<h2>Manage Users</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Current Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>
+                    @if (await UserManager.IsInRoleAsync(user, "Admin"))
+                    {
+                        <span>Admin</span>
+                    }
+                    else
+                    {
+                        <span>Client</span>
+                    }
+                </td>
+                <td>
+                    @if (!await UserManager.IsInRoleAsync(user, "Admin"))
+                    {
+                        <form asp-action="AddAdmin" method="post" style="display:inline;">
+                            <input type="hidden" name="userId" value="@user.Id" />
+                            <button type="submit" class="btn btn-primary btn-sm">Promote to Admin</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span>N/A</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
